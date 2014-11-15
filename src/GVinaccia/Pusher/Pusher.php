@@ -157,6 +157,7 @@ class Pusher implements WampServerInterface
 
     function onServerMessage($message)
     {
+        $message = json_decode($message, true);
         $channel = $message['channel'];
 
         if (!isset($this->subscribedTopics[$channel])) {
