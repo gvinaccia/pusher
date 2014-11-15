@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'bindAddress' => 'tcp://localhost:5555',
+    'bindAddress' => 'tcp://127.0.0.1:5555',
     'port' => '7775'
 ];
