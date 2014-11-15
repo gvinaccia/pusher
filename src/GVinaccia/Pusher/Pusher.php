@@ -160,6 +160,8 @@ class Pusher implements WampServerInterface
         $message = json_decode($message, true);
         $channel = $message['channel'];
 
+        $this->emitter->emit('serverMessage', [$channel, $message['payload']]);
+
         if (!isset($this->subscribedTopics[$channel])) {
             return;
         }
@@ -168,6 +170,5 @@ class Pusher implements WampServerInterface
 
         $topic->broadcast($message['payload']);
 
-        $this->emitter->emit('serverMessage', [$channel, $message['payload']]);
     }
 }
