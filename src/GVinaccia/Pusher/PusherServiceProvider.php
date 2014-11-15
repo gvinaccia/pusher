@@ -44,7 +44,7 @@ class PusherServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('pusher.message.notifier', function() {
-            return new PusherNotifier(Config::get('gvinaccia/pusher::bindAddress'));
+            return new PusherNotifier(Config::get('pusher::bindAddress'));
         });
 
         $this->app->singleton('pusher.eventloop', function() {
