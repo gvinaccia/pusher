@@ -155,7 +155,18 @@ class Pusher implements WampServerInterface
     }
 
 
-    function onServerMessage($message) {
+    function onServerMessage($message)
+    {
+        $channel = $message['channel'];
 
+        if (!isset($this->subscribedTopics[$channel])) {
+            return;
+        }
+
+        $topic = $this->subscribedTopics[$channel];
+
+        $topic->broadcast($message['payload']);
+
+        $this->emitter->emit('serverMessage', [$channel, $message['payload']]);
     }
 }

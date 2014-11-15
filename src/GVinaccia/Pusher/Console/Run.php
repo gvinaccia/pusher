@@ -113,6 +113,10 @@ class Run extends Command
                 <info>.</info>
             ");
         });
+
+        $this->pusherInstance->getEmitter()->on("serverMessage", function($channel, $payload) {
+            $this->line('<info>message received on channel ' . $channel . '</info>');
+        });
     }
 
     /**

@@ -24,7 +24,7 @@ class ServerMessageListener
         $this->zmqContext = new Context($this->eventLoop);
 
         $pull = $this->zmqContext->getSocket(ZMQ::SOCKET_PULL);
-        $pull->bind('tcp://127.0.0.1:5555');
+        $pull->bind($bindAddress);
 
         $this->pullSocket = $pull;
         $this->bindAddress = $bindAddress;

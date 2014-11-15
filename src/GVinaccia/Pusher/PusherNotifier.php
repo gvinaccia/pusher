@@ -31,8 +31,13 @@ class PusherNotifier
         $this->bindAddress = $bindAddress;
     }
 
-    public function notify(array $data = [])
+    public function notify($channel, array $payload = [])
     {
+        $data = [
+            'channel' => $channel,
+            'payload' => $payload
+        ];
+
         $this->getSocket()->send(json_encode($data));
     }
 
