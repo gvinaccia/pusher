@@ -36,11 +36,11 @@ class PusherServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('pusher.commands.run', function() {
-            return new Run($this->app->make('pusher.service'), Config::get('gvinaccia/pusher::port'));
+            return new Run($this->app->make('pusher.service'), Config::get('pusher::port'));
         });
 
         $this->app->bind('pusher.message.listerner', function() {
-            return new ServerMessageListener($this->app->make('pusher.eventloop'), Config::get('gvinaccia/pusher::bindAddress'));
+            return new ServerMessageListener($this->app->make('pusher.eventloop'), Config::get('pusher::bindAddress'));
         });
 
         $this->app->bind('pusher.message.notifier', function() {
