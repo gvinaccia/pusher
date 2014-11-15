@@ -43,6 +43,10 @@ class PusherServiceProvider extends ServiceProvider
             return new ServerMessageListener($this->app->make('pusher.eventloop'), Config::get('gvinaccia/pusher::bindAddress'));
         });
 
+        $this->app->bind('pusher.message.notifier', function() {
+            return new PusherNotifier(Config::get('gvinaccia/pusher::bindAddress'));
+        });
+
         $this->app->singleton('pusher.eventloop', function() {
             return Factory::create();
         });
@@ -60,7 +64,10 @@ class PusherServiceProvider extends ServiceProvider
         return [
             'pusher.emitter',
             'pusher.service',
-            'pusher.commands.run'
+            'pusher.commands.run',
+            'pusher.message.notifier',
+            'pusher.message.listener',
+            'pusher.eventloop'
         ];
     }
 }
